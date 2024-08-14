@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flip a Coin</title>
+</head>
+<style>
+    body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #eb9898;
+    font-family: Arial, sans-serif;
+    margin: 0;   background-image: url('https://www.transparenttextures.com/patterns/white-diamond.png');
+    /* Subtle diamond texture */
+    background-color: #1a9d27; /* Light pastel pink background */
+    background-repeat: repeat;
+    color: #1d1352; /* Dark red text */
+    font-family: 'Georgia', serif; 
+}
+h1{
+    font-size: 40px;
+}
+.container {
+    text-align: center;
+    background-color: #a2eb98;
+    width: 80%;
+    height: 60%;
+    border: 2px solid black;
+    border-radius: 3%;
+}
+
+.coin {
+    width: 100px;
+    height: 100px;
+    margin: 20px auto;
+    position: relative;
+    perspective: 1000px; /* Important for 3D effect */
+}
+button{
+    color: ghostwhite;
+    background-color: blue;
+    margin: 20px;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+button:hover{
+    background-color: rgb(128, 0, 255);
+}
+.coin > div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 2s ease-in-out; /* Ensure transition is set here */
+}
+.heads {
+    background-image: url('https://i.ibb.co/tmGz7GV/head.jpg'); /* Replace with your heads image URL */
+}
+.tails {
+    background-image: url('https://i.ibb.co/PcVdwq6/tail.webp'); /* Replace with your tails image URL */
+    transform: rotateY(180deg);
+}
+.Result{
+    margin: 0;
+    
+    Font-family: 'Montserrat', sans-serif;
+    font-size: 30px;
+    color: azure;
+    background-color: rgb(31, 109, 80);
+}
+</style>
+<body>
+    <div class="container">
+        <h1 >Flip a Coin</h1>
+        <div class="coin" id="coin">
+            <div class="heads"></div>
+            <div class="tails"></div>
+        </div>
+        <button onclick="flipCoin()">Flip Coin</button>
+        <hr>
+        Result will show in 2sec
+        <div class="Result">
+        <p id="result"></p>
+        </div>
+    </div>
+    <script >
+    function flipCoin() {
+        const coin = document.getElementById('coin');
+        const resultText = document.getElementById('result');
+    
+        // Reset coin rotation
+        coin.style.transition = 'none';
+        coin.style.transform = 'rotateY(0deg)';
+        
+        // Brief delay before applying the transformation
+        setTimeout(() => {
+            // Determine if it's heads or tails
+            const isHeads = Math.random() >= 0.5;
+            
+            // Apply the flip transformation
+            coin.style.transition = 'transform 2s ease-in-out';
+            coin.style.transform = 'rotateY(${isHeads ? 180 : 360}deg)';
+            
+            // Update the result text
+            resultText.textContent = isHeads ? 'Heads' : 'Tails';
+        }, 2000);
+    }
+    </script>
+</body>
+</html>
