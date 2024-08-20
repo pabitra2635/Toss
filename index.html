@@ -101,12 +101,17 @@ button{
     background-color: #0000FF;
     color: #ffffff;
 }
-#flip-button:hover{
-    background-color: #00008B;
+@media (min-width:500px) {
+    #flip-button:hover{
+    background-color: #02028b;
 }
-    #flip-button:active{
+#flip-button:active{
     background-color: #028b02;
-}
+}}
+@media (max-width:499px) {
+#flip-button:active{
+    background-color: #db0867;
+}}
 h3,h2{
     display: inline-flex;
     
